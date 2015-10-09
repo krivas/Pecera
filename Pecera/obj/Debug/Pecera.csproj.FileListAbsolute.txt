@@ -1,0 +1,12 @@
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\bin\Debug\Pecera.exe.config
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\bin\Debug\Pecera.exe
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\bin\Debug\Pecera.pdb
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.csprojResolveAssemblyReference.cache
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.Form1.resources
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.Properties.Resources.resources
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.csproj.GenerateResource.Cache
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.exe
+c:\users\kevin\documents\visual studio 2013\Projects\Pecera\Pecera\obj\Debug\Pecera.pdb
+C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\bin\Debug\Pecera.exe.config
+C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\obj\Debug\Pecera.exe
+C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\obj\Debug\Pecera.pdb
