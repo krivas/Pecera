@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections;
+using System.Threading;
 
 namespace Pecera.Modelo
 {
@@ -12,13 +14,19 @@ namespace Pecera.Modelo
     {
 
         protected PictureBox aquaticAnimal=new PictureBox();
+        internal  Random rnd = new Random(Environment.TickCount);
         private bool upperBound;
         private bool lowBound;
         private bool leftBound;
         private bool rightBound;
+        internal bool collision;
+        internal bool joinFish=false;
+        internal bool joinShark=false;
+        private bool leave=false;
         private enum Route{ DiagonalUp=1,DiagonalUpDown=2,DiagonalDown=3,DiagonalDownUp=4   };
         private Route route;
         public static int quantity;
+        
        
        
        
@@ -28,6 +36,8 @@ namespace Pecera.Modelo
             aquaticAnimal.Parent = form;
             aquaticAnimal.Left += 1;
             aquaticAnimal.Top -= 1;
+            X = aquaticAnimal.Left;
+            Y = aquaticAnimal.Top;
             checkingDiagonalLimits(form,temp);
 
   
@@ -38,6 +48,8 @@ namespace Pecera.Modelo
              aquaticAnimal.Parent = form;
              aquaticAnimal.Left -= 1;
              aquaticAnimal.Top += 1;
+             X = aquaticAnimal.Left;
+             Y = aquaticAnimal.Top;
              checkingDiagonalLimits(form,temp);
          }
 
@@ -47,6 +59,8 @@ namespace Pecera.Modelo
              aquaticAnimal.Parent = form;
              aquaticAnimal.Left += 1;
              aquaticAnimal.Top += 1;
+             X = aquaticAnimal.Left;
+             Y = aquaticAnimal.Top;
              checkingDiagonalLimits(form,temp);
          }
 
@@ -58,6 +72,8 @@ namespace Pecera.Modelo
            aquaticAnimal.Parent = form;
              aquaticAnimal.Left -= 1;
              aquaticAnimal.Top -= 1;
+             X = aquaticAnimal.Left;
+             Y = aquaticAnimal.Top;
              checkingDiagonalLimits(form,temp);
             
         }
@@ -68,6 +84,8 @@ namespace Pecera.Modelo
         {
               aquaticAnimal.Parent = form;
              aquaticAnimal.Left += 1;
+             X = aquaticAnimal.Left;
+             Y = aquaticAnimal.Top;
 
              if (aquaticAnimal.Left >= form.Width-90)
              {
@@ -84,6 +102,8 @@ namespace Pecera.Modelo
         {
             aquaticAnimal.Parent = form;
             aquaticAnimal.Left -= 1;
+            X = aquaticAnimal.Left;
+            Y = aquaticAnimal.Top;
 
             if (aquaticAnimal.Left <=20)
             {
@@ -100,6 +120,8 @@ namespace Pecera.Modelo
         {
             aquaticAnimal.Parent = form;
             aquaticAnimal.Top -= 1;
+            X = aquaticAnimal.Left;
+            Y = aquaticAnimal.Top;
 
             if (aquaticAnimal.Top <= 200)
             {
@@ -114,6 +136,8 @@ namespace Pecera.Modelo
         {
             aquaticAnimal.Parent = form;
             aquaticAnimal.Top += 1;
+            X = aquaticAnimal.Left;
+            Y = aquaticAnimal.Top;
 
 
             if (aquaticAnimal.Top >= form.Height - 50)
@@ -128,53 +152,35 @@ namespace Pecera.Modelo
 
          public void move(Form form)
          {
-             if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\Dorys.png"))
+             if (aquaticAnimal.ImageLocation.Equals(@"Resources\Dorys.png"))
              {
                  proofDiagonalLimits(form);
                
              }
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\Pez hembra.png"))
-             {
-
-                 proofDiagonalLimits(form);
-             }
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\tiburon adulto.png"))
+            
+             else if (aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png"))
              {
                  proofLimits(form);
                
              }
             
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\Tiburon bebe hembra.png"))
-             {
-                 proofLimits(form);
-               
-             }
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\Nemo.png"))
+           
+             else if (aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png"))
              {
 
                  proofLimits(form);
 
                
              }
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\tiburon macho.png"))
-             {
-                 proofLimits(form);
-
-                 
-             }
+          
 
              
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\Pez macho.png"))
+            
+
+             else if (aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon hembra.png"))
              {
                  proofLimits(form);
-
-                
-             }
-
-             else if (aquaticAnimal.ImageLocation.Equals(@"C:\Users\Kevin\Desktop\Construccion\Pecera\Pecera\Resources\tiburon hembra.png"))
-             {
-                 proofLimits(form);
-                 return;
+                 
              }
          }
 
@@ -212,17 +218,26 @@ namespace Pecera.Modelo
                  moveDiagonalDownUp(form);
 
              else if (leftBound == true && route == Route.DiagonalUpDown)
+             {
+                
                  moveDiagonalDown(form);
-
+             }
              else if (leftBound == true && route == Route.DiagonalDownUp)
+             {
+                
                  moveDiagonalUp(form);
-
+             }
              else if (rightBound == true && route == Route.DiagonalDown)
+             {
+                
                  moveDiagonalUpDown(form);
-
+             }
              else if (rightBound == true && route == Route.DiagonalUp)
+             {
+                 
                  moveDiagonalDownUp(form);
-
+      
+             }
 
            
          }
@@ -253,6 +268,9 @@ namespace Pecera.Modelo
                  
                  leftBound = false;
                  rightBound = true;
+                 Image flipImage = aquaticAnimal.Image;
+                 flipImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                 aquaticAnimal.Image = flipImage;
                
                  route = temp;
 
@@ -263,7 +281,9 @@ namespace Pecera.Modelo
              {
                  leftBound = true;
                  rightBound = false;
-               
+                 Image flipImage = aquaticAnimal.Image;
+                 flipImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                 aquaticAnimal.Image = flipImage;
                  route = temp;
                   
              }
@@ -332,7 +352,76 @@ namespace Pecera.Modelo
 
              }
          }
+
+
+         public void crash(Fish fish, Form1 form, ArrayList fishList)
+         {
+             collision = aquaticAnimal.Bounds.IntersectsWith(fish.aquaticAnimal.Bounds);
+             
+             if (collision==true)
+             {
+                  if ((aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png") || aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon hembra.png")) && (fish.aquaticAnimal.ImageLocation.Equals(@"Resources\Dorys.png") || fish.aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png")))
+                  {
+                      fishList.Remove(fish);
+                      fish.aquaticAnimal.Hide();
+                  }
+                  else if ((aquaticAnimal.ImageLocation.Equals(@"Resources\Dorys.png") || aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png")) && (fish.aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png") || fish.aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon hembra.png")))
+                  {
+                      fishList.Remove(aquaticAnimal);
+                      aquaticAnimal.Hide();
+                  }
+                  else if ((aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png") && fish.aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png")))
+                  {
+                      fishList.Remove(fish);
+                      aquaticAnimal.Hide();
+                  }
+                 else if ((aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png") && fish.aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png")))
+                  {
+                      fishList.Remove(aquaticAnimal);
+                      aquaticAnimal.Hide();
+                  } 
+                  
+                 
+
+                
+             }
+           
+              
+             
+         }
+
+
         
+
+        
+
+        private void reproduction(ArrayList fishList,Form form)
+        {
+            int number = rnd.Next(1, 10);
+
+            if (collision == false)
+            {
+                if (number <= 5)
+                    fishList.Add(new Fish(@"Resources\Dorys.png", form));
+                else if (number > 5)
+                    fishList.Add(new Fish(@"Resources\Nemo.png", form));
+            }   
+        }
+
+         
+        private int x;
+         public int X
+         {
+             get { return x; }
+             set { x = value; }
+         }
+         private int y;
+
+         public int Y
+         {
+             get { return y; }
+             set { y = value; }
+         }
     }
   
 }
