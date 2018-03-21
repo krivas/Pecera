@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Pecera.Modelo
 {
-    class Tiburon
+    class Tiburon : Aquaticanimal
     {
+        public Tiburon()
+        {
+            quantity++;
+        }
     }
 }

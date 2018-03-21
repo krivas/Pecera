@@ -379,13 +379,29 @@ namespace Pecera.Modelo
                   {
                       fishList.Remove(aquaticAnimal);
                       aquaticAnimal.Hide();
-                  } 
-                  
-                 
+                  }
 
+                  else if (aquaticAnimal.ImageLocation.Equals(@"Resources\Dorys.png") && fish.aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png"))
+                  {
+
+                      joinFish = true;
+                      
+                  }
+
+                  else if (fish.aquaticAnimal.ImageLocation.Equals(@"Resources\Dorys.png") && aquaticAnimal.ImageLocation.Equals(@"Resources\Nemo.png"))
+                  {
+
+                      joinFish = true;
+                     
+                  }
+                  else if ((aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png") && fish.aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon hembra.png")) || (fish.aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon adulto.png") && aquaticAnimal.ImageLocation.Equals(@"Resources\tiburon hembra.png")))
+                  {
+                      joinShark = true;
+
+                  }
                 
              }
-           
+                 
               
              
          }
@@ -399,13 +415,28 @@ namespace Pecera.Modelo
         {
             int number = rnd.Next(1, 10);
 
-            if (collision == false)
+            if (collision == false && joinFish==true)
             {
+                joinFish = false;
+                collision = true;
                 if (number <= 5)
                     fishList.Add(new Fish(@"Resources\Dorys.png", form));
                 else if (number > 5)
                     fishList.Add(new Fish(@"Resources\Nemo.png", form));
-            }   
+            }
+
+            else if (joinShark == true && leave == true)
+            {
+                joinShark = false;
+
+                number = rnd.Next(1,10);
+                if (number <= 5)
+                    fishList.Add(new Fish(@"Resources\tiburon hembra.png", form));
+                else
+                    fishList.Add(new Fish(@"Resources\tiburon adulto.png", form));
+
+
+            }
         }
 
          

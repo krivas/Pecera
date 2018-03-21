@@ -50,6 +50,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\AnimalAcuatico.cs" />
+    <Compile Include="Modelo\Pez.cs" />
+    <Compile Include="Modelo\Tiburon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -79,14 +82,30 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pezjpg.jpg" />
+    <None Include="Resources\tiburon macho.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pezjpg.png" />
+    <None Include="Resources\Dorys.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\descarga.jpg" />
+    <None Include="Resources\tiburon hembra.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nemo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiburon bebe hembra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pez macho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pez hembra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tiburon adulto.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
